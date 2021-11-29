@@ -1,9 +1,16 @@
 <template>
-  <div></div>
+  <div>
+    <products-table></products-table>
+  </div>
 </template>
 
 <script>
-export default {};
+import ProductsTable from "../components/ProductsTable.vue";
+export default {
+  components: {
+    ProductsTable,
+  },
+};
 </script>
 
 <style></style>
