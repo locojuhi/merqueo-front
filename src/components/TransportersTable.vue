@@ -5,7 +5,25 @@
       :items="transporters"
       :items-per-page="5"
       class="elevation-1"
-    ></v-data-table>
+    >
+      <template v-slot:item="row">
+        <tr>
+          <td>{{ row.item.name }}</td>
+          <td>
+            <v-btn
+              class="mx-2"
+              fab
+              dark
+              small
+              color="purple"
+              @click="requestTransporterOrders(row.item.id)"
+            >
+              <v-icon dark>mdi-basket</v-icon>
+            </v-btn>
+          </td>
+        </tr>
+      </template>
+    </v-data-table>
   </div>
 </template>
 
@@ -16,7 +34,7 @@ export default {
     return {
       headers: [
         { text: "Name", value: "name" },
-        { text: "Quantity", value: "quantity" },
+        { text: "Actions", value: "id" },
       ],
     };
   },
@@ -24,13 +42,14 @@ export default {
   computed: {
     transporters: {
       get() {
-        console.log(this.$store.state.transporters);
-
         return this.$store.state.transporters;
       },
     },
   },
   methods: {
+    requestTransporterOrders: (transporterId) => {
+      console.log("Button clickes", transporterId);
+    },
     ...mapGetters(["getTransportersList"]),
     ...mapActions(["updateTransporterList"]),
   },
