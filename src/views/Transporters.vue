@@ -1,9 +1,16 @@
 <template>
-  <div></div>
+  <div>
+    <transporters-table></transporters-table>
+  </div>
 </template>
 
 <script>
-export default {};
+import TransportersTable from "../components/TransportersTable.vue";
+export default {
+  components: {
+    TransportersTable,
+  },
+};
 </script>
 
 <style></style>

@@ -7,10 +7,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     products: [],
+    transporters: [],
   },
   mutations: {
     updateProductList(state, products) {
       state.products = products;
+    },
+    updateTransporterList(state, transporters) {
+      state.transporters = transporters;
     },
   },
   actions: {
@@ -24,12 +28,25 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log("Error: ", err);
         });
-      commit("updateProductList");
+    },
+    updateTransporterList({ commit }) {
+      axios
+        .get("http://127.0.0.1:8000/api/transporters")
+        .then((response) => {
+          let responsePayload = response.data.data;
+          commit("updateTransporterList", responsePayload.transporters);
+        })
+        .catch((err) => {
+          console.log("Error: ", err);
+        });
     },
   },
   getters: {
     getProductList: (state) => {
       state.products;
+    },
+    getTransportersList: (state) => {
+      state.transporters;
     },
   },
   modules: {},
