@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-data-table
+      dense
       :headers="headers"
       :items="transporters"
       :items-per-page="5"
